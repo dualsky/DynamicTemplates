@@ -31,20 +31,28 @@ void RenderArea::twoPagePerWeekDrawPage ( QPainter* painter, bool leftPage )
 	QString pageLabel ;
 	QRectF paper = thePaper ;
 	QRectF page  = thePage ;
+	// week number
+	QString weekNumber = QString::number(today.weekNumber(NULL));
 	
 	if ( leftPage )
 	{	dateToDraw = today ;
-		pageLabel = tr("Weekly Planning:") ;
+		// week number
+		pageLabel = tr("Week ") +  weekNumber + "/" + today.toString ( "yyyy" );
+
+//		pageLabel = tr("Weekly Planning:") ;
 		page  = thePage ;
 	}
 	else
 	{	dateToDraw = today.addDays ( 4 ) ;
-		if ( today.year() == today.addDays ( 6 ).year() )
-		{	pageLabel = today.toString ( "yyyy" ) ;
-		}
-		else
-		{	pageLabel = today.toString ( "yyyy" ) + " - " + today.addDays ( 6 ).toString ( "yyyy" ) ;
-		}
+		// week number
+		pageLabel = tr("Week ") + weekNumber + "/" + today.toString ( "yyyy" ) ;
+
+//		if ( today.year() == today.addDays ( 6 ).year() )
+//		{	pageLabel = today.toString ( "yyyy" ) ;
+//		}
+//		else
+//		{	pageLabel = today.toString ( "yyyy" ) + " - " + today.addDays ( 6 ).toString ( "yyyy" ) ;
+//		}
 		page = QRectF ( thePaper.width() - thePage.width() - thePage.x(), thePage.y(), thePage.width(), thePage.height() ) ;
 	}
 	

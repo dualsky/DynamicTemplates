@@ -78,6 +78,19 @@ void RenderArea::twoPagePerMonthDrawOneDay ( QRectF theRect, QDate drawDay, QPai
 			0.95
 		) ;
 	
+	// --------------------- Week Number --------------------------
+	if (drawDay.dayOfWeek() == Qt::Monday) {
+		QRect dayBox ( theRect.x()+(theRect.width() / 5), theRect.y(), 4 * theRect.width() / 5, theRect.height() / 5) ;
+
+		QPen thePen2 ( Qt::lightGray, penWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+		painter->setPen ( thePen2 ) ;
+
+		QString s = tr("Week ") + QString::number(drawDay.weekNumber(NULL));
+		fitStringInRect ( dayBox, s, painter, Qt::AlignCenter, 0.70 ) ;
+	}
+
+	// -------------------------------------------------------------
+
 	theBrush.setStyle ( Qt::NoBrush ) ;
 	painter->setBrush ( theBrush ) ;
 	painter->drawRect ( theRect ) ;

@@ -42,7 +42,8 @@ void RenderArea::twoPagePerDayDrawDay ( QPainter* painter, bool leftPage )
 	QRectF paper = thePaper ;
 	
 	QRectF page ;
-	
+	QString weekNumber;
+
 	if ( leftPage )
 	{	page = thePage ;
 	}
@@ -95,7 +96,7 @@ void RenderArea::twoPagePerDayDrawDay ( QPainter* painter, bool leftPage )
 	{	fitStringInRect ( textRect, today.toString ( "d" ), painter, Qt::AlignTop | Qt::AlignRight, 0.90 ) ;
 	}
 	
-	//-------- day of the week ----------------------------------------------------
+	//-------- month and year ----------------------------------------------------
 	painter->setFont ( werdz ) ;
 
 	textRect.moveTop( textRect.bottom() ) ;
@@ -112,10 +113,21 @@ void RenderArea::twoPagePerDayDrawDay ( QPainter* painter, bool leftPage )
 	else
 	{	fitStringInRect ( textRect, today.toString ( "MMMM yyyy" ), painter, Qt::AlignVCenter | Qt::AlignRight, 0.90 ) ;
 	}
-	//-------- month and year ----------------------------------------------------
+	//-------- week number ----------------------------------------------------
 	textRect.moveTop( textRect.bottom() ) ;
-	textRect.setHeight ( 3.0 * textRect.height() / 2.0 ) ;
+	textRect.setHeight ( 2.0 * textRect.height() / 3.2 ) ;
 
+	weekNumber = QString::number(today.weekNumber ( NULL ));
+	if ( leftPage )
+	{	fitStringInRect ( textRect, tr("Week ") + weekNumber, painter, Qt::AlignVCenter | Qt::AlignLeft, 0.90 ) ;
+	}
+	else
+	{	fitStringInRect ( textRect, tr("Week ") + weekNumber, painter, Qt::AlignVCenter | Qt::AlignRight, 0.90 ) ;
+	}
+
+	//-------- day of week ----------------------------------------------------
+
+	textRect.moveTop( textRect.bottom() ) ; // Height stays the same
 	if ( leftPage )
 	{	fitStringInRect ( textRect, today.toString ( "dddd" ), painter, Qt::AlignVCenter | Qt::AlignLeft, 0.90 ) ;
 	}

@@ -33,7 +33,9 @@ void RenderArea::onePagePerWeekDrawPage ( QPainter* painter, bool leftPage, bool
 	painter->setFont ( foo ) ;
 	
 	QDate dateToDraw = today ;
-	QString pageLabel = tr(" Weekly Planning: ") ;
+        QString weekNumber = QString::number(today.weekNumber(NULL)) + "/" + today.toString ( "yyyy" );
+	QString pageLabel = tr("Week ") + weekNumber + " ";
+
 	QRectF paper = thePaper ;
 	QRectF page ;
 	
