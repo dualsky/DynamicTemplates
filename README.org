@@ -1,0 +1,8 @@
+* DynamicTemplates
+
+This README assumes you know what the D*I*Y* Planner and/or the
+HipsterPDA are. 
+
+more information at http://www.diyplanner.com/node/6210
+or the copy of that article in the doc directory.
+
