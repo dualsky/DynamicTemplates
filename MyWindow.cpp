@@ -101,7 +101,7 @@ void MyWindow::createToolBars()
 	theToolBar->addWidget ( x ) ;
 	theToolBar->addWidget ( scaleWidget ) ;
 	connect ( scaleWidget, SIGNAL ( valueChanged ( double ) ), renderArea, SLOT( setScale ( double ) ) ) ;
-	scaleWidget->setValue ( 25.00 ) ;
+	scaleWidget->setValue ( 5.00 ) ;
 }
 
 void MyWindow::createStatusBar()
