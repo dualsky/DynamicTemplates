@@ -95,16 +95,21 @@ void RenderArea::drawLittleMonth ( QPainter* painter, QDate when, QRectF where, 
 	theBrush.setColor ( lineColors[1] ) ;
 	painter->setBrush ( theBrush  ) ;
 	
-	
-	for ( int dow = 0 ; dow < 7 ; dow++ )
+	// Week number
+	for ( int dow = 0 ; dow < 8 ; dow++ )
 	{	theBox.setRect
-		(	dow * where.width() / 7,
+		(	dow * where.width() / 8,
 			where.height() / 6.,
-			where.width() / 7,
+			where.width() / 8,
 			where.height() / 12.
 		) ;
 		
-		littleDayString = refMonth[dow][0].toString ( "ddd" ) ;
+		// Week number
+		if (dow == 0) {
+			littleDayString = "" ;
+		} else {
+			littleDayString = refMonth[dow-1][0].toString ( "ddd" ) ;
+		}
 		fitStringInRect ( theBox, littleDayString, painter, Qt::AlignCenter, 0.95 ) ;
 
 	}
@@ -124,9 +129,9 @@ void RenderArea::drawLittleMonth ( QPainter* painter, QDate when, QRectF where, 
 				) ;
 				
 				theBox.setRect
-				(	dow * where.width() / 7,
+				(	(dow+1) * where.width() / 8,
 					(2 + week) * where.height() / 8,
-					where.width() / 7,
+					where.width() / 8,
 					where.height() / 8
 				) ;
 				
@@ -152,6 +157,32 @@ void RenderArea::drawLittleMonth ( QPainter* painter, QDate when, QRectF where, 
 					0.80					
 				) ;
 			}
+			
+			// Week number
+			if (dow == 0) {
+				if ((week < 5) || (refMonth[dow][week].month() == when.month())) {
+
+					theBox.setRect	(
+							dow * where.width() / 8,
+							(2 + week) * where.height() / 8,
+							where.width() / 8,
+							where.height() / 8
+					) ;
+
+					painter->save() ;
+					theBrush.setColor ( lineColors[4] ) ;
+					painter->setBrush ( Qt::SolidPattern  ) ;
+					painter->setBrush ( theBrush  ) ;
+					thePen.setColor ( lineColors[4] ) ;
+					painter->setPen ( thePen ) ;
+					painter->drawRect ( theBox ) ;
+					painter->restore() ;
+
+					QString s = QString::number(refMonth[dow][week].weekNumber(NULL));
+					fitStringInRect	( theBox, s, painter, Qt::AlignCenter, 0.70) ;
+				}
+			}
+			// End: Week number
 		}
 		if ( refMonth[6][week].month() != when.month() ) break ;
 	}
