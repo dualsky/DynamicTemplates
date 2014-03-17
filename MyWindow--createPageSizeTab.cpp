@@ -191,9 +191,9 @@ QWidget* MyWindow::createPageTab ( QWidget* grandParent)
 			SLOT ( unitComboBoxChanged ( int ) )
 			) ;
 	
-	isItInches = 0 ;
-	unitComboBox->setCurrentIndex ( 0 ) ;
-
+	isItInches = 1 ;
+	unitComboBox->setCurrentIndex ( 1 ) ;
+	
 	QVBoxLayout* layoutv01 = new QVBoxLayout ( parent ) ;
 
 	QHBoxLayout* layouth01 = new QHBoxLayout () ;
@@ -268,19 +268,16 @@ QWidget* MyWindow::createPageTab ( QWidget* grandParent)
 	dimLabel->hide() ;
 	customHeight->hide() ;
 	
-	majorTypeSizeCombo->setCurrentIndex ( 1 ) ;
-	majorTypeSizeComboChanged ( 1 ) ;
+	majorTypeSizeCombo->setCurrentIndex ( 0 ) ;
+	majorTypeSizeComboChanged ( 0 ) ;
 	
 //	fcSizeCombo->setCurrentIndex ( 2 ) ;
 //	fcSizeComboChanged ( 2 ) ;
-//	usSizeCombo->setCurrentIndex ( 5 ) ;
-//	usSizeComboChanged ( 5 ) ;
-	euroSizeCombo->setCurrentIndex ( 5 ) ;
-	euroSizeComboChanged ( 5 ) ;
+	usSizeCombo->setCurrentIndex ( 5 ) ;
+	usSizeComboChanged ( 5 ) ;
 	
 	orientationCombo->setCurrentIndex ( 1 ) ;
 	orientationComboChanged ( 1 ) ;
-	unitComboBoxChanged(0);
 
 	// default quarter inch margins
 	topMargin->setValue ( 0.25 ) ;

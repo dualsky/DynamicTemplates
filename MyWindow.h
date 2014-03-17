@@ -21,6 +21,9 @@
 #define MY_WINDOW_H
 
 
+#include <QApplication>
+#include <QtDeclarative>
+#include <QTimer>
 #include <QWidget>
 #include <QtGui>
 #include <QtDebug>

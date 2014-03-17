@@ -3,7 +3,6 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = 
 DEPENDPATH += . \
               RenderArea \
               RenderArea/notes \
@@ -16,6 +15,13 @@ DEPENDPATH += . \
               RenderArea/calendars/twoPagePerWeek \
               RenderArea/calendars/twoPagePerYear
 INCLUDEPATH += .
+
+QT += network declarative gui core printsupport
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+# CONFIG += qt-components
+TARGET = DynamicTemplates
+
 QT += svg
 QMAKE_MAC_SDK=/Developer/SDKs/MacOSX10.4u.sdk
 CONFIG+= x86 ppc
